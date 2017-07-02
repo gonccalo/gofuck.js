@@ -1,2 +1,2 @@
 # GOfuck
-Brainfuck interpreter in written in GO
+Brainfuck to javascript transpiler in written in GO 
