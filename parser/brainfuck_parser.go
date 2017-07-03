@@ -1,4 +1,4 @@
-// Generated from src/github.com/gonccalo/GOfuck/Brainfuck.g4 by ANTLR 4.6.
+// Generated from parser/Brainfuck.g4 by ANTLR 4.6.
 
 package parser // Brainfuck
 
@@ -176,6 +176,16 @@ func (s *ProgramContext) ExitRule(listener antlr.ParseTreeListener) {
 	}
 }
 
+func (s *ProgramContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case BrainfuckVisitor:
+		return t.VisitProgram(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
 func (p *BrainfuckParser) Program() (localctx IProgramContext) {
 	localctx = NewProgramContext(p, p.GetParserRuleContext(), p.GetState())
 	p.EnterRule(localctx, 0, BrainfuckParserRULE_program)
@@ -291,6 +301,16 @@ func (s *CommandContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *CommandContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(BrainfuckListener); ok {
 		listenerT.ExitCommand(s)
+	}
+}
+
+func (s *CommandContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case BrainfuckVisitor:
+		return t.VisitCommand(s)
+
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -417,6 +437,16 @@ func (s *LoopContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *LoopContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(BrainfuckListener); ok {
 		listenerT.ExitLoop(s)
+	}
+}
+
+func (s *LoopContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case BrainfuckVisitor:
+		return t.VisitLoop(s)
+
+	default:
+		return t.VisitChildren(s)
 	}
 }
 
@@ -558,6 +588,16 @@ func (s *OpContext) EnterRule(listener antlr.ParseTreeListener) {
 func (s *OpContext) ExitRule(listener antlr.ParseTreeListener) {
 	if listenerT, ok := listener.(BrainfuckListener); ok {
 		listenerT.ExitOp(s)
+	}
+}
+
+func (s *OpContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case BrainfuckVisitor:
+		return t.VisitOp(s)
+
+	default:
+		return t.VisitChildren(s)
 	}
 }
 

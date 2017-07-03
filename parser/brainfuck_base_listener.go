@@ -1,4 +1,4 @@
-// Generated from src/github.com/gonccalo/GOfuck/Brainfuck.g4 by ANTLR 4.6.
+// Generated from parser/Brainfuck.g4 by ANTLR 4.6.
 
 package parser // Brainfuck
 
