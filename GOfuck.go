@@ -18,6 +18,15 @@ func (this *GoFuckListener) EnterProgram(ctx *parser.ProgramContext){
 	fmt.Printf("var outDiv  = document.getElementById(\"output\");\n")
 	fmt.Printf("var enter   = document.getElementById(\"enter\");\n")
 	fmt.Printf("var input   = document.getElementById(\"input\");\n")
+	fmt.Printf("var info    = document.getElementById(\"info\");\n")
+	fmt.Printf("var gen 	= main();\n")
+	fmt.Printf("gen.next();\n")
+	fmt.Printf("enter.onclick = function() {\n")
+	fmt.Printf("    mem[pointer] = input.value.charCodeAt(0);\n")
+	fmt.Printf("    gen.next();\n")
+	fmt.Printf("};\n")
+
+	fmt.Printf("function* main() {\n")
 }
 
 func (this *GoFuckListener) EnterOp(ctx *parser.OpContext){
@@ -31,10 +40,16 @@ func (this *GoFuckListener) EnterOp(ctx *parser.OpContext){
 	case parser.BrainfuckParserTAPE_RIGHT:
 		fmt.Println("pointer++;")
 	case parser.BrainfuckParserINPUT:
-		//behold the power of async input
+		/*behold the power of async input
 		fmt.Printf("enter.onclick = function() {\n")
 		fmt.Printf("mem[pointer] = input.value.charCodeAt(0);\n")
 		toClose++
+		*/
+		fmt.Printf("enter.disabled = false;\n")
+		fmt.Printf("info.innerText = \"Input text now\";\n")
+		fmt.Printf("yield;\n")
+		fmt.Printf("info.innerText = \"\";\n")
+		fmt.Printf("enter.disabled = true;\n")
 	case parser.BrainfuckParserOUTPUT:
 		fmt.Printf("outDiv.innerText = outDiv.innerText + String.fromCharCode(mem[pointer]);\n")
 		fmt.Printf("console.log(String.fromCharCode(mem[pointer]));\n")
@@ -50,9 +65,11 @@ func (this *GoFuckListener) ExitLoop(ctx *parser.LoopContext){
 }
 
 func (this *GoFuckListener) ExitProgram(ctx *parser.ProgramContext){
-	for i := 0; i < toClose; i++ {
+	/*for i := 0; i < toClose; i++ {
 		fmt.Printf("}\n")	
-	}
+	}*/
+	//exit main
+	fmt.Printf("}\n")
 }
 
 var filename string
