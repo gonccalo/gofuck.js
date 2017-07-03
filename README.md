@@ -1,2 +1,2 @@
-# GOGO_brain2js
-Brainfuck to javascript transpiler written in GO 
+# gofuck.js
+Brainfuck to javascript transpiler written in GO using antlr4
